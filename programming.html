@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Programming Fundamentals Exam</title>
+<style>
+body{font-family:Arial;background:#f4f6f8}
+.container{max-width:900px;margin:40px auto;background:#fff;padding:30px;border-radius:8px}
+h2{text-align:center;color:#0b3d91}
+#timer{font-size:20px;font-weight:bold;text-align:center;margin-bottom:20px;color:#b30000}
+button{width:100%;padding:12px;background:#0b3d91;color:#fff;border:none;border-radius:5px;font-size:16px}
+h3{margin-top:25px}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>Programming Fundamentals Examination</h2>
+<div id="timer">Time Remaining: 15:00</div>
+
+<form id="exam">
+
+<h3>1. What is a program?</h3>
+<input type="radio" name="q1" value="correct"> A set of instructions given to a computer<br>
+<input type="radio" name="q1"> Computer hardware<br>
+<input type="radio" name="q1"> Operating system<br>
+
+<h3>2. Which of the following is a programming language?</h3>
+<input type="radio" name="q2" value="correct"> Python<br>
+<input type="radio" name="q2"> MS Word<br>
+<input type="radio" name="q2"> Excel<br>
+
+<h3>3. A variable is:</h3>
+<input type="radio" name="q3" value="correct"> A storage location for data<br>
+<input type="radio" name="q3"> A computer device<br>
+<input type="radio" name="q3"> An error<br>
+
+<h3>4. Which symbol is used for assignment?</h3>
+<input type="radio" name="q4" value="correct"> =<br>
+<input type="radio" name="q4"> ==<br>
+<input type="radio" name="q4"> !=<br>
+
+<h3>5. What is an algorithm?</h3>
+<input type="radio" name="q5" value="correct"> Step-by-step solution to a problem<br>
+<input type="radio" name="q5"> A programming error<br>
+<input type="radio" name="q5"> Computer virus<br>
+
+<h3>6. Which is a loop structure?</h3>
+<input type="radio" name="q6" value="correct"> while<br>
+<input type="radio" name="q6"> if<br>
+<input type="radio" name="q6"> print<br>
+
+<h3>7. Debugging means:</h3>
+<input type="radio" name="q7" value="correct"> Removing errors from a program<br>
+<input type="radio" name="q7"> Writing code<br>
+<input type="radio" name="q7"> Executing code<br>
+
+<h3>8. Which data type stores whole numbers?</h3>
+<input type="radio" name="q8" value="correct"> Integer<br>
+<input type="radio" name="q8"> Float<br>
+<input type="radio" name="q8"> String<br>
+
+<h3>9. A compiler:</h3>
+<input type="radio" name="q9" value="correct"> Translates code into machine language<br>
+<input type="radio" name="q9"> Stores files<br>
+<input type="radio" name="q9"> Displays output<br>
+
+<h3>10. Which symbol starts a comment in many languages?</h3>
+<input type="radio" name="q10" value="correct"> //<br>
+<input type="radio" name="q10"> **<br>
+<input type="radio" name="q10"> ??<br>
+
+<h3>11. Syntax refers to:</h3>
+<input type="radio" name="q11" value="correct"> Grammar rules of a language<br>
+<input type="radio" name="q11"> Program output<br>
+<input type="radio" name="q11"> Program speed<br>
+
+<h3>12. Which keyword is used for decision making?</h3>
+<input type="radio" name="q12" value="correct"> if<br>
+<input type="radio" name="q12"> for<br>
+<input type="radio" name="q12"> print<br>
+
+<h3>13. IDE stands for:</h3>
+<input type="radio" name="q13" value="correct"> Integrated Development Environment<br>
+<input type="radio" name="q13"> Internal Data Engine<br>
+<input type="radio" name="q13"> Internet Design Editor<br>
+
+<h3>14. Which is NOT a programming language?</h3>
+<input type="radio" name="q14" value="correct"> Excel<br>
+<input type="radio" name="q14"> Java<br>
+<input type="radio" name="q14"> Python<br>
+
+<button type="button" onclick="submitExam()">Submit Exam</button>
+</form>
+</div>
+
+<script>
+// ⏱️ TIMER (15 minutes)
+let time = 900;
+const timer = document.getElementById("timer");
+
+const interval = setInterval(()=>{
+  let min = Math.floor(time/60);
+  let sec = time % 60;
+  sec = sec < 10 ? "0" + sec : sec;
+  timer.textContent = `Time Remaining: ${min}:${sec}`;
+
+  if(time <= 0){
+    clearInterval(interval);
+    alert("Time is up! Exam submitted automatically.");
+    submitExam();
+  }
+  time--;
+}, 1000);
+
+// 🧮 SCORING
+function submitExam(){
+  let score = 0;
+  document.querySelectorAll("input[value='correct']:checked")
+    .forEach(()=>score++);
+
+  localStorage.setItem("examScore", score);
+  alert("Exam submitted! Score: " + score + "/14");
+  window.location.href = "new.html";
+  window.location.href = "new.html";
+}
+</script>
+
+</body>
+</html>

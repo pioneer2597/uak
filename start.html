@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mtihani Portal | Introduction to Computers Exam</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#f4f6f8; color:#333; }
+    header { background:#0b3d91; color:white; padding:20px; text-align:center; }
+    .container { max-width:700px; margin:50px auto; background:white; padding:30px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+    .btn { width:100%; padding:12px; background:#0b3d91; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px; margin-top:20px;}
+    .btn:hover { background:#092c6d; }
+    footer { text-align:center; margin-top:40px; color:#555; }
+    label { display:block; margin:5px 0; font-size:16px; }
+    h3 { margin-top:30px; }
+    #timer { font-size:20px; font-weight:bold; color:#0b3d91; text-align:center; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AURELIUS UNIVERSITY OF KENYA</h1>
+    <h2>Introduction to Computers - Online Exam</h2>
+  </header>
+
+  <div class="container">
+    <div id="timer">Time Remaining: 15:00</div>
+
+    <form id="examForm">
+      <!-- 14 Questions -->
+      <h3>1. Which of the following is an input device?</h3>
+      <label><input type="radio" name="q1" value="Keyboard"> Keyboard</label>
+      <label><input type="radio" name="q1" value="Monitor"> Monitor</label>
+      <label><input type="radio" name="q1" value="Printer"> Printer</label>
+
+      <h3>2. Which part of the computer is considered the brain?</h3>
+      <label><input type="radio" name="q2" value="CPU"> CPU</label>
+      <label><input type="radio" name="q2" value="RAM"> RAM</label>
+      <label><input type="radio" name="q2" value="Hard Drive"> Hard Drive</label>
+
+      <h3>3. Which software is used to browse the internet?</h3>
+      <label><input type="radio" name="q3" value="Browser"> Browser</label>
+      <label><input type="radio" name="q3" value="Word Processor"> Word Processor</label>
+      <label><input type="radio" name="q3" value="Spreadsheet"> Spreadsheet</label>
+
+      <h3>4. Which of the following is an example of storage device?</h3>
+      <label><input type="radio" name="q4" value="Hard Disk"> Hard Disk</label>
+      <label><input type="radio" name="q4" value="Monitor"> Monitor</label>
+      <label><input type="radio" name="q4" value="Keyboard"> Keyboard</label>
+
+      <h3>5. What does RAM stand for?</h3>
+      <label><input type="radio" name="q5" value="Random Access Memory"> Random Access Memory</label>
+      <label><input type="radio" name="q5" value="Read Access Memory"> Read Access Memory</label>
+      <label><input type="radio" name="q5" value="Run All Modules"> Run All Modules</label>
+
+      <h3>6. What is the main function of the operating system?</h3>
+      <label><input type="radio" name="q6" value="Manage computer resources"> Manage computer resources</label>
+      <label><input type="radio" name="q6" value="Create documents"> Create documents</label>
+      <label><input type="radio" name="q6" value="Browse the internet"> Browse the internet</label>
+
+      <h3>7. Which of the following is NOT an input device?</h3>
+      <label><input type="radio" name="q7" value="Mouse"> Mouse</label>
+      <label><input type="radio" name="q7" value="Scanner"> Scanner</label>
+      <label><input type="radio" name="q7" value="Speaker"> Speaker</label>
+
+      <h3>8. Which device is used to display information on screen?</h3>
+      <label><input type="radio" name="q8" value="Monitor"> Monitor</label>
+      <label><input type="radio" name="q8" value="Printer"> Printer</label>
+      <label><input type="radio" name="q8" value="Keyboard"> Keyboard</label>
+
+      <h3>9. Which of these is an example of system software?</h3>
+      <label><input type="radio" name="q9" value="Windows OS"> Windows OS</label>
+      <label><input type="radio" name="q9" value="MS Word"> MS Word</label>
+      <label><input type="radio" name="q9" value="Photoshop"> Photoshop</label>
+
+      <h3>10. What does CPU stand for?</h3>
+      <label><input type="radio" name="q10" value="Central Processing Unit"> Central Processing Unit</label>
+      <label><input type="radio" name="q10" value="Computer Personal Unit"> Computer Personal Unit</label>
+      <label><input type="radio" name="q10" value="Central Program Unit"> Central Program Unit</label>
+
+      <h3>11. Which of the following is an output device?</h3>
+      <label><input type="radio" name="q11" value="Printer"> Printer</label>
+      <label><input type="radio" name="q11" value="Mouse"> Mouse</label>
+      <label><input type="radio" name="q11" value="Keyboard"> Keyboard</label>
+
+      <h3>12. Which type of software allows you to create documents, spreadsheets, or presentations?</h3>
+      <label><input type="radio" name="q12" value="Application software"> Application software</label>
+      <label><input type="radio" name="q12" value="System software"> System software</label>
+      <label><input type="radio" name="q12" value="Utility software"> Utility software</label>
+
+      <h3>13. Which of the following is an example of a web browser?</h3>
+      <label><input type="radio" name="q13" value="Chrome"> Chrome</label>
+      <label><input type="radio" name="q13" value="MS Excel"> MS Excel</label>
+      <label><input type="radio" name="q13" value="Notepad"> Notepad</label>
+
+      <h3>14. Which memory is permanent and stores data even when the computer is turned off?</h3>
+      <label><input type="radio" name="q14" value="ROM"> ROM</label>
+      <label><input type="radio" name="q14" value="RAM"> RAM</label>
+      <label><input type="radio" name="q14" value="Cache"> Cache</label>
+
+      <button type="button" class="btn" onclick="submitExam()">Submit Exam</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 ST. ONESMUS UNIVERSITY OF KENYA</p>
+  </footer>
+
+  <script>
+    // Timer
+    let totalTime = 900; // 15 minutes
+    const timerDisplay = document.getElementById('timer');
+    function updateTimer() {
+      let minutes = Math.floor(totalTime / 60);
+      let seconds = totalTime % 60;
+      seconds = seconds < 10 ? '0'+seconds : seconds;
+      timerDisplay.textContent = `Time Remaining: ${minutes}:${seconds}`;
+      if(totalTime <= 0) {
+        clearInterval(timerInterval);
+        alert("Time is up! Exam submitted automatically.");
+        submitExam();
+      }
+      totalTime--;
+    }
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // Correct answers
+    const correctAnswers = {
+      q1: "Keyboard", q2: "CPU", q3: "Browser", q4: "Hard Disk", q5: "Random Access Memory",
+      q6: "Manage computer resources", q7: "Speaker", q8: "Monitor", q9: "Windows OS",
+      q10: "Central Processing Unit", q11: "Printer", q12: "Application software",
+      q13: "Chrome", q14: "ROM"
+    };
+
+    function submitExam() {
+      let score = 0;
+      for(let i=1; i<=14; i++){
+        const ans = document.querySelector(`input[name="q${i}"]:checked`);
+        if(ans && ans.value === correctAnswers[`q${i}`]) score++;
+      }
+      localStorage.setItem('examScore', score);
+      alert(`Exam submitted! You scored ${score}/14`);
+      window.location.href = "nem.html";
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+

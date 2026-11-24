@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Analytical Chemistry Exam</title>
+<style>
+body{font-family:Arial;background:#f4f6f8}
+.container{max-width:900px;margin:40px auto;background:#fff;padding:30px;border-radius:8px}
+h2{text-align:center;color:#0b3d91}
+#timer{font-size:20px;font-weight:bold;text-align:center;margin-bottom:20px;color:#b30000}
+button{width:100%;padding:12px;background:#0b3d91;color:#fff;border:none;border-radius:5px;font-size:16px}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>Analytical Chemistry Examination</h2>
+<div id="timer">Time Remaining: 15:00</div>
+
+<form id="exam">
+
+<h3>1. Analytical chemistry deals with:</h3>
+<input type="radio" name="q1" value="correct"> Identification of substances<br>
+<input type="radio" name="q1"> Manufacturing chemicals<br>
+<input type="radio" name="q1"> Mixing solutions<br>
+
+<h3>2. Qualitative analysis identifies:</h3>
+<input type="radio" name="q2" value="correct"> Substances present<br>
+<input type="radio" name="q2"> Quantity present<br>
+<input type="radio" name="q2"> Volume only<br>
+
+<h3>3. Quantitative analysis determines:</h3>
+<input type="radio" name="q3" value="correct"> Amount of substance<br>
+<input type="radio" name="q3"> Colour of solution<br>
+<input type="radio" name="q3"> Odour<br>
+
+<h3>4. Apparatus used in titration:</h3>
+<input type="radio" name="q4" value="correct"> Burette<br>
+<input type="radio" name="q4"> Beaker<br>
+<input type="radio" name="q4"> Flask only<br>
+
+<h3>5. pH measures:</h3>
+<input type="radio" name="q5" value="correct"> Acidity or alkalinity<br>
+<input type="radio" name="q5"> Density<br>
+<input type="radio" name="q5"> Mass<br>
+
+<h3>6. A standard solution has:</h3>
+<input type="radio" name="q6" value="correct"> Known concentration<br>
+<input type="radio" name="q6"> Unknown volume<br>
+<input type="radio" name="q6"> Unknown mass<br>
+
+<h3>7. Gravimetric analysis involves:</h3>
+<input type="radio" name="q7" value="correct"> Measuring mass of precipitate<br>
+<input type="radio" name="q7"> Measuring pressure<br>
+<input type="radio" name="q7"> Measuring temperature<br>
+
+<h3>8. Instrument used to measure absorbance:</h3>
+<input type="radio" name="q8" value="correct"> Spectrophotometer<br>
+<input type="radio" name="q8"> Barometer<br>
+<input type="radio" name="q8"> Thermometer<br>
+
+<h3>9. Chromatography is used for:</h3>
+<input type="radio" name="q9" value="correct"> Separating mixtures<br>
+<input type="radio" name="q9"> Heating samples<br>
+<input type="radio" name="q9"> Cooling samples<br>
+
+<h3>10. A primary standard is:</h3>
+<input type="radio" name="q10" value="correct"> Highly pure compound<br>
+<input type="radio" name="q10"> Acidic solution<br>
+<input type="radio" name="q10"> Diluted solution<br>
+
+<h3>11. Molarity is:</h3>
+<input type="radio" name="q11" value="correct"> Moles per litre<br>
+<input type="radio" name="q11"> Grams per litre<br>
+<input type="radio" name="q11"> Volume only<br>
+
+<h3>12. Accuracy means:</h3>
+<input type="radio" name="q12" value="correct"> Closeness to true value<br>
+<input type="radio" name="q12"> Repeatability<br>
+<input type="radio" name="q12"> Speed<br>
+
+<h3>13. Precision refers to:</h3>
+<input type="radio" name="q13" value="correct"> Consistency of results<br>
+<input type="radio" name="q13"> Correct value<br>
+<input type="radio" name="q13"> Measurement unit<br>
+
+<h3>14. Indicator changes colour at:</h3>
+<input type="radio" name="q14" value="correct"> End point<br>
+<input type="radio" name="q14"> Start point<br>
+<input type="radio" name="q14"> Freezing point<br>
+
+<button type="button" onclick="submitExam()">Submit Exam</button>
+</form>
+</div>
+
+<script>
+let time = 900;
+const timer = document.getElementById("timer");
+
+const interval = setInterval(()=>{
+  let min = Math.floor(time/60);
+  let sec = time%60;
+  sec = sec<10?"0"+sec:sec;
+  timer.textContent = `Time Remaining: ${min}:${sec}`;
+  if(time<=0){
+    clearInterval(interval);
+    submitExam();
+  }
+  time--;
+},1000);
+
+function submitExam(){
+  let score=0;
+  document.querySelectorAll("input[value='correct']:checked").forEach(()=>score++);
+  localStorage.setItem("examScore",score);
+  alert("Exam submitted! Score: "+score+"/14");
+  window.location.href="main.html";
+}
+</script>
+</body>
+</html>

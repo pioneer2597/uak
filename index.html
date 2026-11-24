@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ST. ONESMUS UNIVERSITY OF KENYA | Student Portal</title>
+<style>
+body { margin:0; font-family: Arial, sans-serif; background:#f4f6f9; }
+/* Header */
+header { display:flex; align-items:center; background:#0a3d62; color:rgb(220, 204, 204); padding:15px 20px; }
+header img { height:60px; margin-right:15px; }
+/* Navigation */
+nav { background:#1e3799; display:flex; flex-wrap:wrap; justify-content:space-around; padding:10px 0; position:sticky; top:0; z-index:100; }
+nav a { color:white; text-decoration:none; font-weight:bold; cursor:pointer; }
+nav a:hover { text-decoration:underline; }
+/* Sub-menu container */
+#subMenuContainer { background:#f1f2f6; padding:10px; display:flex; flex-wrap:wrap; }
+/* Sub-menu items */
+#subMenuContainer div { margin:0 15px; font-weight:bold; cursor:pointer; color:#0a3d62; }
+#subMenuContainer div:hover { text-decoration:underline; }
+/* Nested sub-menu */
+.nested { margin-left:20px; display:flex; flex-direction:column; }
+.nested div { margin:2px 0; cursor:pointer; color:#1e3799; }
+.nested div:hover { text-decoration:underline; }
+/* Container for cards */
+.container { padding:20px; }
+/* Cards */
+.card { background:white; padding:20px; margin-bottom:20px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.1); display:none; }
+/* Buttons */
+button { padding:10px 18px; background:#1e3799; color:white; border:none; border-radius:5px; cursor:pointer; }
+button:hover { background:#0c2461; }
+/* Inputs */
+input { padding:8px; width:100%; margin-bottom:10px; }
+/* Select */
+select { padding:8px; width:280px; }
+/* Table */
+table { border-collapse:collapse; width:100%; }
+th { background:#1e3799; color:white; }
+td, th { padding:8px; text-align:center; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="image/création de logo vectoriel de l'éducation mondiale_.jpg" alt="University Logo">
+  <div>
+    <h1> AURELIUS UNIVERSITY OF KENYA</h1>
+    <p>Official Student & Examination Portal</p>
+  </div>
+</header>
+
+<!-- Navbar -->
+<nav>
+<a onclick="showSubMenu('homeSub')">Home</a>
+<a onclick="showSubMenu('feesSub')">School Fees</a>
+<a onclick="showSubMenu('timetableSub')">Timetables</a>
+<a onclick="showSubMenu('unitsSub')">Course Registration</a>
+<a onclick="showSubMenu('resultsSub')">Results</a>
+<a onclick="showSubMenu('examSub')">Examinations</a>
+<a onclick="showSubMenu('specialSub')">Special / Supplementary Exam</a>
+<a onclick="logout()">Logout</a>
+</nav>
+
+<!-- Sub-menu container -->
+<div id="subMenuContainer"></div>
+
+<div class="container">
+
+<!-- HOME CARD -->
+<div class="card" id="homeCard">
+<h2>Welcome Student</h2>
+
+<div style="margin-bottom:15px; max-width:300px;">
+  <label for="regNo"><strong>Registration Number:</strong></label><br>
+  <input type="text" id="regNo" placeholder="e.g., STU12345"><br>
+
+  <label for="password"><strong>Password (Student ID / KCSE Index No.):</strong></label><br>
+  <input type="password" id="password" placeholder="Enter your password"><br>
+
+  <button style="width:100%;" onclick="loginStudent()">Login</button>
+  <p id="loginMsg" style="color:red; margin-top:5px;"></p>
+</div>
+</div>
+
+<!-- SCHOOL FEES CARD -->
+<div class="card" id="feesCard">
+<h2>School Fees</h2>
+<p><strong>Total Fees:</strong> KES 85,000</p>
+<p><strong>Amount Paid:</strong> KES 50,000</p>
+<p><strong>Outstanding Balance:</strong> KES 35,000</p>
+</div>
+
+<!-- TIMETABLE CARD -->
+<div class="card" id="timetableCard">
+<h2>Academic Timetable</h2>
+<table border="1">
+<tr><th>Day</th><th>Unit</th><th>Time</th><th>Venue</th></tr>
+<tr><td>Monday</td><td>Introduction to Computers</td><td>9:00 AM – 11:00 AM</td><td>Lab A</td></tr>
+<tr><td>Tuesday</td><td>Programming Fundamentals</td><td>10:00 AM – 12:00 PM</td><td>Room B12</td></tr>
+<tr><td>Wednesday</td><td>Analytical Chemistry</td><td>8:00 AM – 10:00 AM</td><td>Chem Lab</td></tr>
+<tr><td>Thursday</td><td>Economics</td><td>11:00 AM – 1:00 PM</td><td>Room C4</td></tr>
+<tr><td>Friday</td><td>Engineering</td><td>2:00 PM – 4:00 PM</td><td>Workshop</td></tr>
+</table>
+</div>
+
+<!-- COURSE REGISTRATION CARD -->
+<div class="card" id="unitsCard">
+<h2>Course Registration</h2>
+<ul>
+<li>101 – Introduction to Computers</li>
+<li>102 – Programming Fundamentals</li>
+<li>103 – Analytical Chemistry</li>
+<li>104 – Economics</li>
+<li>105 – Engineering</li>
+</ul>
+</div>
+
+<!-- RESULTS CARD -->
+<div class="card" id="resultsCard">
+<h2>Results</h2>
+<p><strong>Last Exam Score:</strong> <span id="resultScore">Not Available</span></p>
+<p><strong>Status:</strong> <span id="resultStatus">---</span></p>
+</div>
+
+<!-- EXAMS CARD -->
+<div class="card" id="examCard">
+<h2>Online Examinations</h2>
+<p><strong>Examination Rules:</strong></p>
+<ul>
+<li>Read all instructions carefully.</li>
+<li>Do not refresh or close the browser during the exam.</li>
+<li>Each exam has a fixed time limit.</li>
+<li>Only one attempt per unit is allowed.</li>
+<li>The exam auto-submits when time expires.</li>
+</ul>
+
+<label><strong>Select Course:</strong></label><br><br>
+<select id="courseSelect">
+<option value="">--Select Course--</option>
+<option value="101">101 – Introduction to Computers</option>
+<option value="102">102 – Programming Fundamentals</option>
+<option value="103">103 – Analytical Chemistry</option>
+<option value="104">104 – Economics</option>
+<option value="105">105 – Engineering</option>
+</select>
+<br><br>
+<button onclick="startExam()">Start Examination</button>
+
+<div id="scoreBox" style="display:none; margin-top:15px;">
+<h3>Last Exam Score</h3>
+<p id="scoreText"></p>
+</div>
+</div>
+
+<!-- SPECIAL / SUPPLEMENTARY EXAM CARD -->
+<div class="card" id="specialCard">
+<h2>Special / Supplementary Examination</h2>
+<p>Students who missed or failed an examination due to genuine reasons may apply for a special or supplementary exam.</p>
+<button>Submit Request</button>
+</div>
+
+</div> <!-- container -->
+
+<script>
+/* Sub-menus */
+const subMenus = {
+  homeSub: [
+    "🔑 Change Password",
+    "👤 My Profile",
+    "🆔 Student ID",
+    "🏫 Inter-Faculty",
+    "✅ Clearance Status",
+    "💰 Caution Refund",
+    "📈 Academic Tracking"
+  ],
+  feesSub: [
+    "📄 Fees Report",
+    "📝 Detailed Fees Report",
+    {parent:"💳 Pay Fees Online", children:["🏫 Tuition Fee Payment","🏠 Accommodation Fee Payment"]}
+  ],
+  timetableSub: [
+    "📚 Class Timetable",
+    "📝 Class Exam Timetable",
+    "👤 My Timetable",
+    "📝 My Exam Timetable"
+  ],
+  unitsSub: [
+    "🎫 Exam Card",
+    "👤 Update Profile",
+    "📝 Request Special / Supplementary"
+  ],
+  resultsSub: [
+    "📄 Provisional Result Slip",
+    "📜 Transcript Request"
+  ],
+  examSub: [
+    "📌 Exam Rules & Start Exam"
+  ],
+  specialSub: [
+    "📝 Submit Special / Supplementary Exam Request"
+  ]
+};
+
+function showSubMenu(menuKey){
+  const container = document.getElementById('subMenuContainer');
+  container.innerHTML = '';
+  subMenus[menuKey].forEach(item=>{
+    if(typeof item === 'string'){
+      const div=document.createElement('div');
+      div.textContent=item;
+      div.onclick = ()=>alert("Clicked "+item);
+      container.appendChild(div);
+    } else {
+      const parentDiv = document.createElement('div');
+      parentDiv.textContent = item.parent;
+      container.appendChild(parentDiv);
+      const nestedDiv = document.createElement('div');
+      nestedDiv.className='nested';
+      item.children.forEach(child=>{
+        const d = document.createElement('div');
+        d.textContent = child;
+        d.onclick = ()=>alert("Clicked "+child);
+        nestedDiv.appendChild(d);
+      });
+      container.appendChild(nestedDiv);
+    }
+  });
+  // Show corresponding card if needed
+  const cards = ['homeCard','feesCard','timetableCard','unitsCard','resultsCard','examCard','specialCard'];
+  cards.forEach(c=>document.getElementById(c).style.display='none');
+  if(menuKey==='homeSub') document.getElementById('homeCard').style.display='block';
+  if(menuKey==='feesSub') document.getElementById('feesCard').style.display='block';
+  if(menuKey==='timetableSub') document.getElementById('timetableCard').style.display='block';
+  if(menuKey==='unitsSub') document.getElementById('unitsCard').style.display='block';
+  if(menuKey==='resultsSub') document.getElementById('resultsCard').style.display='block';
+  if(menuKey==='examSub') document.getElementById('examCard').style.display='block';
+  if(menuKey==='specialSub') document.getElementById('specialCard').style.display='block';
+}
+
+/* Login */
+function loginStudent(){
+  const reg = document.getElementById('regNo').value.trim();
+  const pass = document.getElementById('password').value.trim();
+  const msg = document.getElementById('loginMsg');
+  if(reg === '' || pass === ''){ msg.style.color='red'; msg.textContent="Please enter both Registration Number and Password"; return; }
+  msg.style.color='green';
+  msg.textContent="Logged in as "+reg;
+}
+
+/* Start Exam */
+function startExam(){
+  const course = document.getElementById("courseSelect").value;
+  if(!course){ alert("Please select a course"); return; }
+  if(course==="101") location.href="start.html";
+  else if(course==="102") location.href="programming.html";
+  else if(course==="103") location.href="analytical.html";
+  else if(course==="104") location.href="economics.html";
+  else if(course==="105") location.href="engineering.html";
+}
+
+/* Load exam score */
+const score = localStorage.getItem("examScore");
+if(score!==null){
+  document.getElementById("scoreBox").style.display="block";
+  document.getElementById("scoreText").textContent="You scored "+score+" marks.";
+  document.getElementById("resultScore").textContent = score + " / 14";
+  if(score>=7){ document.getElementById("resultStatus").textContent="PASS"; document.getElementById("resultStatus").style.color="green"; }
+  else{ document.getElementById("resultStatus").textContent="FAIL"; document.getElementById("resultStatus").style.color="red"; }
+}
+
+/* Logout */
+function logout(){ if(confirm("Are you sure you want to logout?")){ localStorage.clear(); location.reload(); } }
+
+/* Show Home by default */
+showSubMenu('homeSub');
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
